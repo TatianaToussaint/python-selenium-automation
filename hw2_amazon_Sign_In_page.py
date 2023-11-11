@@ -29,5 +29,8 @@ actual_result = sign_in.text  # Get the text content of the element
 assert expected_result == actual_result, f'Error. Expected text {expected_result} did not match actual text {actual_result}'
 print('Test case passed!')
 
+# verify email field present
+driver.find_element(By.ID, 'ap_email')
+
 sleep(5)
 driver.quit()

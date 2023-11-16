@@ -6,11 +6,13 @@ from time import sleep
 def open_target(context):
     context.driver.get('https://www.target.com/')
 
+
 @when('Search for coffee')
 def search_product(context):
     context.driver.find_element(By.ID, 'search').send_keys('coffee')
     context.driver.find_element(By.CSS_SELECTOR, "[data-test='@web/Search/SearchButton']").click()
     sleep(6)
+
 
 @then('Verify search worked')
 def verify_search(context):

@@ -1,5 +1,5 @@
 # Created by User at 11/15/2023
-Feature: Cart
+Feature: Cart page
   # Enter feature description here
 
   Scenario: User can see message

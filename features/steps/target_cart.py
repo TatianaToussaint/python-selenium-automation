@@ -14,4 +14,3 @@ def verify_message(context):
     text_message = context.driver.find_element(By.CSS_SELECTOR, "[data-test='boxEmptyMsg']").text
     assert 'Your cart is empty' in text_message, f'Expected message is displayed in {text_message}'
 
-

@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from behave import given, when, then
 from time import sleep
 
+
 @given('Open target main page')
 def open_target(context):
     context.driver.get('https://www.target.com/')
@@ -30,4 +31,4 @@ def verify_header_present(context):
 def verify_header_has_links(context, number):
     links = context.driver.find_elements(By.CSS_SELECTOR, "[data-test*='@web/GlobalHeader/UtilityHeader/']")
     print(links)
-    assert len(links) == number, f'Expected {number} links, but got {len(links)}'
+    assert len(links) == int(number), f'Expected {number} links, but got {len(links)}'

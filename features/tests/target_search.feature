@@ -35,6 +35,7 @@ Feature: Search test
 Scenario: : User can add a product to card
     Given Open target main page
     When Search for AirPods (3rd Generation)
-    When Click on add to Cart button
-    Then Verify cart has 1 item
+    And Click on add to Cart button
+    And Open card page
+    Then Verify cart has 1 item(s)
 

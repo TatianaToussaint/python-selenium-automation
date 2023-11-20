@@ -13,6 +13,16 @@ driver = webdriver.Chrome(service=service)
 
 driver.get('//www.amazon.com')
 
+# search by CSS, ID
+driver.find_element(By.CSS_SELECTOR, '#twotabsearchtextbox')
+driver.find_element(By.CSS_SELECTOR, 'input#twotabsearchtextbox')
+
+# search by CSS, classes+ tag:
+driver.find_element(By.CSS_SELECTOR, 'input.nav-progressive-attribute.nav-input')
+
+# search by CSS attributes
+driver.find_element(By.CSS_SELECTOR, "[placeholder='Search Amazon']")
+
 # search by CSS, Logo
 driver.find_element(By.CSS_SELECTOR, "[class='a-icon a-icon-logo']")
 
@@ -45,4 +55,5 @@ driver.find_element(By.CSS_SELECTOR, "[href*='ap_register_notification_privacy_n
 
 # search by CSS, Sign in link
 driver.find_element(By.CSS_SELECTOR, "[class='a-link-emphasis']")
+
 

@@ -1,4 +1,3 @@
-# Created by User at 11/15/2023
 Feature: Search test
   # Enter feature description here
 
@@ -36,6 +35,13 @@ Scenario: : User can add a product to card
     Given Open target main page
     When Search for AirPods (3rd Generation)
     And Click on add to Cart button
-    And Open card page
+    And Store product name
+    And Open cart page
     Then Verify cart has 1 item(s)
+    And Verify cart has correct product
+
+  Scenario: Verify that user can see product names and images
+    Given Open target main page
+    When Search for AirPods (3rd Generation)
+    Then Verify that every product has a name and an image
 

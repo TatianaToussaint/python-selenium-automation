@@ -9,6 +9,9 @@ HEADER = (By.CSS_SELECTOR, "[class*='UtilityHeaderWrapper']")
 HEADER_LINKS = (By.CSS_SELECTOR, "[data-test*='@web/GlobalHeader/UtilityHeader/']")
 SIGN_IN_BTN = (By.CSS_SELECTOR, "[data-test='@web/AccountLink']")
 SIDE_MENU_SIGN_IN = (By.CSS_SELECTOR, "[data-test='accountNav-signIn']")
+ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[data-test='addToCartButton']")
+CART_SUMMARY = (By.CSS_SELECTOR, "[class*='CartSummarySpan']")
+CART_ITEM_TITLE = (By.CSS_SELECTOR, "[data-test='cartItem-title']")
 
 
 @given('Open target main page')
@@ -41,3 +44,15 @@ def verify_header_has_links(context, number):
     number = int(number)  # convert str to int
     links = context.driver.find_elements(*HEADER_LINKS)
     assert len(links) == number, f'Expected {number} links, but got {len(links)}'
+
+
+@when('Click on cart icon')
+def cart_icon(context):
+    cart_icon_element = context.app.main_page.cart_icon()
+    cart_icon_element.click()
+
+
+@then('Verify “Your cart is empty” message is shown')
+def verify_message(context):
+    context.app.cart_page.verify_cart_empty_txt()
+

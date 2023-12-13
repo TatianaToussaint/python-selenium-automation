@@ -7,7 +7,7 @@ from pages.base_page import Page
 class MainPage(Page):
     SEARCH_FIELD = (By.ID, 'search')
     SEARCH_BTN = (By.CSS_SELECTOR, "[data-test='@web/Search/SearchButton']")
-    CART_ICON = (By.CSS_SELECTOR, "[data-test='@web/CartIcon']")
+    CART_ICON = (By.CSS_SELECTOR, "[data-test='@web/CartLink']")
 
     def open_main(self):
         self.open_url('https://www.target.com/')
@@ -17,5 +17,5 @@ class MainPage(Page):
         self.click(*self.SEARCH_FIELD)
         sleep(6)
 
-    def click_cart(self,):
-        self.click(*self.CART_ICON)
+    def cart_icon(self):
+        self. wait_for_element_click(*self.CART_ICON)

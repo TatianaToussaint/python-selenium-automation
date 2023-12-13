@@ -1,6 +1,6 @@
 Feature: Search test
   # Enter feature description here
-
+  
   Scenario: User can search for a product
     Given Open target main page
     When Search for coffee

@@ -23,3 +23,7 @@ def verify_benefit_boxes(context):
         EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class*='styles__BenefitCard-sc']")))
     assert len(benefit_boxes_elements) == 5, f'Expected 5 benefit boxes, but got {len(benefit_boxes_elements)}'
 
+
+@then('Verify that clicking though Circle tabs works')
+def verify_can_click_tabs(context):
+    context.app.circle_page.verify_can_click_tabs()

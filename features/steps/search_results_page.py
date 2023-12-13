@@ -6,17 +6,11 @@ from time import sleep
 
 ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[data-test='addToCartButton']")
 SIDE_NAV_PRODUCT_NAME = (By.CSS_SELECTOR, "h4[class*='StyledHeading']")
-SEARCH_RESULT_TXT = (By.CSS_SELECTOR, "[data-test='resultsHeading']")
 CART_SUMMARY = (By.CSS_SELECTOR, '.styles__CartSummarySpan-sc-odscpb-3.jaXVgU')
 CART_ITEM_TITLE = (By.ID, "#item-title-cf8c74a1-87d0-11ee-a2fa-31b9b19331f5")
 LISTINGS = (By.CSS_SELECTOR, "[data-test='@web/site-top-of-funnel/ProductCardWrapper']")
 PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='product-title']")
 PRODUCT_IMG = (By.CSS_SELECTOR, "[class*='ProductCardImage']")
-
-
-@then('Verify {expected_keyword} search result url')
-def verify_search_result_url(context, expected_keyword):
-    assert expected_keyword in context.driver.current_url, f'Expected {expected_keyword} not in {context.driver.current_url}'
 
 
 @when('Click on Add to Cart button')
@@ -33,6 +27,16 @@ def store_product_name(context):
         message='Product name not shown in side navigation'
     )
     context.product_name = context.driver.find_element(*SIDE_NAV_PRODUCT_NAME).text
+
+
+@then('Verify search worked for {product}')
+def verify_search(context, product):
+    context.app.search_results_page.verify_search_result(product)
+
+
+@then('Verify {expected_keyword} in search result url')
+def verify_search_url(context, expected_keyword):
+    context.app.search_results_page.verify_search_url(expected_keyword)
 
 
 @when('Open cart page')
@@ -54,24 +58,11 @@ def verify_cart_item_count(context, amount):
     assert number_of_items == int(amount), f'Expected {amount} items, but got {number_of_items}'
 
 
-@then('Verify search worked for {product}')
-def verify_search(context, product):
-    search_results_header = context.driver.find_element(By.CSS_SELECTOR, "[data-test='resultsHeading']").text
-    search_results_header = context.driver.find_element(*SEARCH_RESULT_TXT).text
-    assert product in search_results_header, f'Expected text {product} not in {search_results_header}'
-
-
-@then('Verify {expected_keyword} in search result url')
-def verify_search_url(context, expected_keyword):
-    assert expected_keyword in context.driver.current_url, \
-        f'Expected {expected_keyword} not in {context.driver.current_url}'
-
-
 @then('Verify that every product has a name and an image')
 def verify_product_name_img(context):
-    context.driver.execute_script("window.scrollBy(0,2000)","")
+    context.driver.execute_script("window.scrollBy(0,2000)", "")
     sleep(2)
-    context.driver.execute_script("window.scrollBy(0,2000)","")
+    context.driver.execute_script("window.scrollBy(0,2000)", "")
 
     all_products = context.driver.find_elements(*LISTINGS)
     for product in all_products:

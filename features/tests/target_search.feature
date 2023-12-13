@@ -1,29 +1,29 @@
 Feature: Search test
   # Enter feature description here
 
-  Scenario: User can search for a coffee
+  Scenario: User can search for a product
     Given Open target main page
     When Search for coffee
    Then Verify search worked for coffee
-    And Verify coffee search result url
+    And Verify coffee in search result url
 
   Scenario: : User can search for a tea
     Given Open target main page
     When Search for tea
     Then Verify search worked for tea
-    And Verify tea search result url
+    And Verify tea in search result url
 
   Scenario: : User can search for a mug
     Given Open target main page
     When Search for christmas lights
     Then Verify search worked for christmas lights
-    And Verify christmas+lights search result url
+    And Verify christmas+lights in search result url
 
   Scenario Outline: User can search a product
     Given Open target main page
     When Search for <product>
     Then Verify search worked for <expected_product>
-    And Verify <expected_url> search result url
+    And Verify <expected_url> in search result url
     Examples:
     |product          |expected_product |expected_url     |
     |coffee           |coffee           |coffee           |

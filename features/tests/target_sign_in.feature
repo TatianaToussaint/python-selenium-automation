@@ -4,8 +4,7 @@ Feature: Sign In form
 
   Scenario: User can access Sign In
     Given Open target main page
-    When Click Sign In
+    When Click on the initial Sign In
+    When Clicks on the final Sign In
     Then Verify Sign In form opened
 
-  # Enter scenario name here
-    # Enter steps here
